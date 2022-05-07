@@ -1,5 +1,7 @@
 from functools import partial
 
+import numpy as np
+
 from base import simulate
 
 def lorenz_dynamics(y, t):
@@ -11,5 +13,8 @@ def lorenz_dynamics(y, t):
     return dydt
 
 if __name__ == "__main__":
-    lorenz_simulator = partial(simulate, dynamic_func=lorenz_dynamics, ts=0.05, max_t=20.)
+    ts = 0.05
+    max_t = 20.
+    t = np.arange(0, max_t+ts, ts)
+    lorenz_simulator = partial(simulate, dynamic_func=lorenz_dynamics, t=t)
     t, sol = lorenz_simulator(x0=[15.0, 15.0, 36.])

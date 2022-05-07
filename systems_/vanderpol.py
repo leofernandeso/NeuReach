@@ -1,5 +1,7 @@
 from functools import partial
 
+import numpy as np
+
 from base import simulate
 
 def vanderpol_dynamics(y, t):
@@ -12,5 +14,8 @@ def vanderpol_dynamics(y, t):
     return dydt
 
 if __name__ == "__main__":
-    vanderpol_simulator = partial(simulate, dynamic_func=vanderpol_dynamics, ts=0.05, max_t=20.)
+    ts = 0.05
+    max_t = 20.
+    t = np.arange(0, max_t+ts, ts)
+    vanderpol_simulator = partial(simulate, dynamic_func=vanderpol_dynamics, t=t)
     t, sol = vanderpol_simulator(x0=[1., 1.])
