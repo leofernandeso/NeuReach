@@ -17,4 +17,4 @@ def simulate(
         odeint_kwargs = {}
 
     sol = odeint(dynamic_func, x0, t, **odeint_kwargs)
-    return t, sol
+    return sol
